@@ -1,0 +1,991 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm",
+    "name": "SWC 2 CDO Blocklist Shared",
+    "title": "SWC 2 CDO Blocklist Shared",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "global_blacklist_contents",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01IX6QS57AXNB5VnJv3xNxVS795EFyBSkls",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "global_blacklist_uid",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01IX6QS57AOCL4xAXFXXTx3cINiZqTW5dhA",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_01FX1627YIMCW42Ogv9vYd598L28sj9doJX",
+        "properties": {
+          "scope": "output",
+          "name": "scanner_ip",
+          "type": "datatype.table",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01IX6QS57B1426aeVQVCgog1g6qaAgInvAu",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_01FZGY465G7NT1L6QdxgYydbytx51gSknKm",
+        "properties": {
+          "scope": "output",
+          "name": "global_blacklist_table",
+          "type": "datatype.table",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01IX6QS57AZDP19f7OTTBU4E4rlMv00hUhs",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "blacklisted_ip_uid",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01IX6QS57AQGR1AP3PzDeWwL60KdjQNJolJ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "blacklisted-ip",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01IX6QS57AIQL0HWgRDnlMJ1HveEjtLotRT",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "blacklisted_ip_name",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01IX6QS57AS6Q5ZnoX4GrtxW4oz4HNH5Iqg",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "updated_global_blacklist_contents",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01IX6QS57AMDY6ZYg4bPSvAxze9zi41h8Ky",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "swc_alert_id",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01IX6QS57AVTH5qkrEuXL3vLmmPVJ4fPcSN",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "blacklisted-ip_contents",
+          "type": "datatype.string",
+          "description": "json used to add object info into the Global_Blacklist object group",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01IX6QS57AU0B7NCGX6CGL7tdBWHze1vjry",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "SWC 2 CDO Blocklist Shared",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01IX6QYMYHMUU6oWJp5fqYb7OTBkxpWmhJA",
+        "name": "HTTP Request",
+        "title": "Get SWC Port Scan Alerts",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": ""
+            }
+          ],
+          "display_name": "Get SWC Port Scan Alerts",
+          "method": "GET",
+          "relative_url": "/api/v3/alerts/alert/?status=open&search=Inbound Port Scanner",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "override_workflow_target_group_criteria": false,
+            "target_id": "definition_target_01FWWHLNBPBNE5wiLppRw8C42XahgMtUBGa",
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01IX6R0JONKJP3dXJIavLoYCMI5vGtmthZp",
+        "name": "Read Table from JSON",
+        "title": "SWC Alert IDs",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "SWC Alert IDs",
+          "input_json": "$activity.definition_activity_01IX6QYMYHMUU6oWJp5fqYb7OTBkxpWmhJA.output.response_body$",
+          "jsonpath_query": "$[\"objects\"]",
+          "persist_output": true,
+          "populate_columns": false,
+          "skip_execution": false,
+          "table_columns": [
+            {
+              "column_name": "id",
+              "column_type": "string"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01IX6R3TZIFL36wNERAcQIRwgeD0BjtT7Tq",
+        "name": "Group",
+        "title": "Group",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Group",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01IX6R6T930BG4ERtRndEkChhLIgzBG9Vuc",
+            "name": "For Each",
+            "title": "For Each Alert ID, Get Obervables",
+            "type": "logic.for_each",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "For Each Alert ID, Get Obervables",
+              "skip_execution": false,
+              "source_array": "$activity.definition_activity_01IX6R0JONKJP3dXJIavLoYCMI5vGtmthZp.output.read_table_from_json$"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01IX6RA5TSFG76RWkWkmynWazccaVgT1V1B",
+                "name": "HTTP Request",
+                "title": "Get SWC Alert Oberserables",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "Authorization",
+                      "value": ""
+                    }
+                  ],
+                  "display_name": "Get SWC Alert Oberserables",
+                  "method": "GET",
+                  "relative_url": "/api/v3/observations/all?alert=$activity.definition_activity_01IX6R6T930BG4ERtRndEkChhLIgzBG9Vuc.input.source_array[@].id$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "override_workflow_target_group_criteria": false,
+                    "target_id": "definition_target_01FWWHLNBPBNE5wiLppRw8C42XahgMtUBGa",
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01IX6RCU031NM4wmAY3Eco2KZFzuHa7nFhf",
+                "name": "Read Table from JSON",
+                "title": "SWC Alert Observables",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "SWC Alert Observables",
+                  "input_json": "$activity.definition_activity_01IX6RA5TSFG76RWkWkmynWazccaVgT1V1B.output.response_body$",
+                  "jsonpath_query": "$[\"objects\"]",
+                  "persist_output": true,
+                  "populate_columns": false,
+                  "skip_execution": false,
+                  "table_columns": [
+                    {
+                      "column_name": "id",
+                      "column_type": "string"
+                    },
+                    {
+                      "column_name": "scanner_ip",
+                      "column_type": "string"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01IX6REVYPSM14u3z2mX6YYA3xcyJtYFuwE",
+                "name": "Set Variables",
+                "title": "Set Blacklisted-IP Variable",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Blacklisted-IP Variable",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm.output.variable_workflow_01IX6QS57AIQL0HWgRDnlMJ1HveEjtLotRT$",
+                      "variable_value_new": "$activity.definition_activity_01IX6RCU031NM4wmAY3Eco2KZFzuHa7nFhf.output.read_table_from_json[-1].scanner_ip$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01IX6RGQLBFKK4FZrSVaIDnshOuqCuThPzd",
+        "name": "Parallel Block",
+        "title": "Parallel Block",
+        "type": "logic.parallel",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Parallel Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01IX6RHW3D7PQ6Be5T30hBqP3nebcIZ5KUD",
+            "name": "Parallel Branch",
+            "title": "Check Blacklisted Object in CDO",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Check Blacklisted Object in CDO",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01IX6RJ0AWL002428RKy2mZp0VCxCKWOfX2",
+                "name": "Group",
+                "title": "Group",
+                "type": "logic.group",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Group",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01IX6RL8U7HEE1Zr5gXKHfX8WnVgqmPNry0",
+                    "name": "HTTP Request",
+                    "title": "Check CDO for existing Blacklist Object",
+                    "type": "web-service.http_request",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "allow_auto_redirect": true,
+                      "content_type": "application/json",
+                      "continue_on_error_status_code": false,
+                      "continue_on_failure": false,
+                      "custom_headers": [
+                        {
+                          "name": "Authorization",
+                          "value": ""
+                        }
+                      ],
+                      "display_name": "Check CDO for existing Blacklist Object",
+                      "method": "GET",
+                      "relative_url": "/aegis/rest/v1/services/targets/objects?q=name:blacklisted-$workflow.definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm.output.variable_workflow_01IX6QS57AIQL0HWgRDnlMJ1HveEjtLotRT$",
+                      "runtime_user": {
+                        "override_target_runtime_user": false,
+                        "target_default": true
+                      },
+                      "skip_execution": false,
+                      "target": {
+                        "override_workflow_target": true,
+                        "override_workflow_target_group_criteria": false,
+                        "target_id": "definition_target_01FWWFY10MX7S2QECl9QBBuiGbhKPTrCLOp",
+                        "use_workflow_target_group": false
+                      }
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01IX6RNPVZZKU02y0OwUwOnu1sUu2hikDB9",
+                    "name": "JSONPath Query",
+                    "title": "JSONPath Query",
+                    "type": "corejava.jsonpathquery",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": true,
+                      "display_name": "JSONPath Query",
+                      "input_json": "$activity.definition_activity_01IX6RL8U7HEE1Zr5gXKHfX8WnVgqmPNry0.output.response_body$",
+                      "jsonpath_queries": [
+                        {
+                          "jsonpath_query": "$[0][\"name\"]",
+                          "jsonpath_query_name": "json_object_name",
+                          "jsonpath_query_type": "string"
+                        }
+                      ],
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01IX6RPBMW3A55W4OOfNhoggiDSRXR2EP65",
+                    "name": "Condition Block",
+                    "title": "If Blacklisted Object",
+                    "type": "logic.if_else",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "If Blacklisted Object",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "blocks": [
+                      {
+                        "unique_name": "definition_activity_01IX6RQJOZVIC2qSTEXvmyO8Wr7HW8f54mQ",
+                        "name": "Condition Branch",
+                        "title": "Does Exist",
+                        "type": "logic.condition_block",
+                        "base_type": "activity",
+                        "properties": {
+                          "condition": {
+                            "left_operand": "$activity.definition_activity_01IX6RNPVZZKU02y0OwUwOnu1sUu2hikDB9.output.succeeded$",
+                            "operator": "eq",
+                            "right_operand": true
+                          },
+                          "continue_on_failure": false,
+                          "display_name": "Does Exist",
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_01IX6RS7GUVPL031cCeQbIB4N7wV2jvc8jt",
+                            "name": "JSONPath Query",
+                            "title": "JSONPath Query Object's Name and UID",
+                            "type": "corejava.jsonpathquery",
+                            "base_type": "activity",
+                            "properties": {
+                              "action_timeout": 180,
+                              "continue_on_failure": false,
+                              "display_name": "JSONPath Query Object's Name and UID",
+                              "input_json": "$activity.definition_activity_01IX6RL8U7HEE1Zr5gXKHfX8WnVgqmPNry0.output.response_body$",
+                              "jsonpath_queries": [
+                                {
+                                  "jsonpath_query": "$[0][\"uid\"]",
+                                  "jsonpath_query_name": "blacklisted_ip_uid",
+                                  "jsonpath_query_type": "string"
+                                },
+                                {
+                                  "jsonpath_query": "$[0][\"name\"]",
+                                  "jsonpath_query_name": "blacklisted_ip_name",
+                                  "jsonpath_query_type": "string"
+                                }
+                              ],
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity"
+                          },
+                          {
+                            "unique_name": "definition_activity_01IX6RTZK09XE3WzzL18phM2IVsi6ZtNiOj",
+                            "name": "Set Variables",
+                            "title": "Set Object's Name and UID Variables",
+                            "type": "core.set_multiple_variables",
+                            "base_type": "activity",
+                            "properties": {
+                              "continue_on_failure": false,
+                              "display_name": "Set Object's Name and UID Variables",
+                              "skip_execution": false,
+                              "variables_to_update": [
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm.output.variable_workflow_01IX6QS57AS6Q5ZnoX4GrtxW4oz4HNH5Iqg$",
+                                  "variable_value_new": "$activity.definition_activity_01IX6RS7GUVPL031cCeQbIB4N7wV2jvc8jt.output.jsonpath_queries.blacklisted_ip_name$"
+                                },
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm.output.variable_workflow_01IX6QS57AQGR1AP3PzDeWwL60KdjQNJolJ$",
+                                  "variable_value_new": "$activity.definition_activity_01IX6RS7GUVPL031cCeQbIB4N7wV2jvc8jt.output.jsonpath_queries.blacklisted_ip_uid$"
+                                }
+                              ]
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      },
+                      {
+                        "unique_name": "definition_activity_01IX6RVYQGQ0Y3B76qH0nkLzAJ8BTit1bEI",
+                        "name": "Condition Branch",
+                        "title": "Does NOT Exist",
+                        "type": "logic.condition_block",
+                        "base_type": "activity",
+                        "properties": {
+                          "condition": {
+                            "left_operand": "$activity.definition_activity_01IX6RNPVZZKU02y0OwUwOnu1sUu2hikDB9.output.succeeded$",
+                            "operator": "eq",
+                            "right_operand": false
+                          },
+                          "continue_on_failure": false,
+                          "display_name": "Does NOT Exist",
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_01IX6RXPP1H5R30XNKOIyj8ErLSgqIbg5gf",
+                            "name": "HTTP Request",
+                            "title": "Create Blacklist Object",
+                            "type": "web-service.http_request",
+                            "base_type": "activity",
+                            "properties": {
+                              "action_timeout": 180,
+                              "allow_auto_redirect": true,
+                              "body": "{\n  \"name\": \"blacklisted-$workflow.definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm.output.variable_workflow_01IX6QS57AIQL0HWgRDnlMJ1HveEjtLotRT$\",\n  \"@typeName\": \"LocalObject\",\n  \"objectType\": \"NETWORK_OBJECT\",\n  \"contents\": [\n    {\n      \"@type\": \"NetworkContent\",\n      \"sourceElement\": \"$workflow.definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm.output.variable_workflow_01IX6QS57AIQL0HWgRDnlMJ1HveEjtLotRT$/32\",\n      \"destinationElement\": null,\n      \"wildcardMaskElement\": null\n    }\n  ],\n  \"deviceType\": \"FTD\",\n  \"stateMachineContext\": {}\n}",
+                              "content_type": "application/json",
+                              "continue_on_error_status_code": false,
+                              "continue_on_failure": false,
+                              "custom_headers": [
+                                {
+                                  "name": "Authorization",
+                                  "value": ""
+                                }
+                              ],
+                              "display_name": "Create Blacklist Object",
+                              "method": "POST",
+                              "relative_url": "/aegis/rest/v1/services/targets/objects",
+                              "runtime_user": {
+                                "override_target_runtime_user": false,
+                                "target_default": true
+                              },
+                              "skip_execution": false,
+                              "target": {
+                                "override_workflow_target": true,
+                                "target_id": "definition_target_01FWWFY10MX7S2QECl9QBBuiGbhKPTrCLOp"
+                              }
+                            },
+                            "object_type": "definition_activity"
+                          },
+                          {
+                            "unique_name": "definition_activity_01IX6RZMKZ13A3z29Ez2DV0gF20E12lYsXi",
+                            "name": "JSONPath Query",
+                            "title": "JSONPath Query",
+                            "type": "corejava.jsonpathquery",
+                            "base_type": "activity",
+                            "properties": {
+                              "action_timeout": 180,
+                              "continue_on_failure": false,
+                              "display_name": "JSONPath Query",
+                              "input_json": "$activity.definition_activity_01IX6RXPP1H5R30XNKOIyj8ErLSgqIbg5gf.output.response_body$",
+                              "jsonpath_queries": [
+                                {
+                                  "jsonpath_query": "$[\"uid\"]",
+                                  "jsonpath_query_name": "blacklisted_ip_uid",
+                                  "jsonpath_query_type": "string"
+                                },
+                                {
+                                  "jsonpath_query": "$[\"name\"]",
+                                  "jsonpath_query_name": "blacklisted_ip_name",
+                                  "jsonpath_query_type": "string"
+                                }
+                              ],
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity"
+                          },
+                          {
+                            "unique_name": "definition_activity_01IX6S19X7VJ12dwxPWs5h5KSAu46HMUoS6",
+                            "name": "Set Variables",
+                            "title": "Set Object's Name and UID Variables",
+                            "type": "core.set_multiple_variables",
+                            "base_type": "activity",
+                            "properties": {
+                              "continue_on_failure": false,
+                              "display_name": "Set Object's Name and UID Variables",
+                              "skip_execution": false,
+                              "variables_to_update": [
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm.output.variable_workflow_01IX6QS57AS6Q5ZnoX4GrtxW4oz4HNH5Iqg$",
+                                  "variable_value_new": "$activity.definition_activity_01IX6RZMKZ13A3z29Ez2DV0gF20E12lYsXi.output.jsonpath_queries.blacklisted_ip_name$"
+                                },
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm.output.variable_workflow_01IX6QS57AQGR1AP3PzDeWwL60KdjQNJolJ$",
+                                  "variable_value_new": "$activity.definition_activity_01IX6RZMKZ13A3z29Ez2DV0gF20E12lYsXi.output.jsonpath_queries.blacklisted_ip_uid$"
+                                }
+                              ]
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01IX6S34P3IRK3njIwKtvDrarrzqebwhE41",
+            "name": "Parallel Branch",
+            "title": "Get Global Blacklist Info",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Get Global Blacklist Info",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01IX6S472QTVI25GTFEe7NJTilG1wdjyiuN",
+                "name": "HTTP Request",
+                "title": "Get Global Blacklist Info",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "Authorization",
+                      "value": ""
+                    }
+                  ],
+                  "display_name": "Get Global Blacklist Info",
+                  "method": "GET",
+                  "relative_url": "/aegis/rest/v1/services/targets/objects?q=name:Global_Blacklist",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "override_workflow_target_group_criteria": false,
+                    "target_id": "definition_target_01FWWFY10MX7S2QECl9QBBuiGbhKPTrCLOp",
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01IX6S5WN5KDQ6YFEe63XzvHyU5S7S93ihL",
+                "name": "JSONPath Query",
+                "title": "Get Global Blacklist Objects",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Get Global Blacklist Objects",
+                  "input_json": "$activity.definition_activity_01IX6S472QTVI25GTFEe7NJTilG1wdjyiuN.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$[0][\"uid\"]",
+                      "jsonpath_query_name": "global_blacklist_uid",
+                      "jsonpath_query_type": "string"
+                    },
+                    {
+                      "jsonpath_query": "$[0][\"contents\"]",
+                      "jsonpath_query_name": "global_blacklist_contents",
+                      "jsonpath_query_type": "string"
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01IX6S7WJX0FH1L4Mbfl5QyMDC7jzYBVece",
+                "name": "Set Variables",
+                "title": "Set Global Blacklist Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Global Blacklist Variables",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm.output.variable_workflow_01IX6QS57AOCL4xAXFXXTx3cINiZqTW5dhA$",
+                      "variable_value_new": "$activity.definition_activity_01IX6S5WN5KDQ6YFEe63XzvHyU5S7S93ihL.output.jsonpath_queries.global_blacklist_uid$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm.output.variable_workflow_01IX6QS57AXNB5VnJv3xNxVS795EFyBSkls$",
+                      "variable_value_new": "$activity.definition_activity_01IX6S5WN5KDQ6YFEe63XzvHyU5S7S93ihL.output.jsonpath_queries.global_blacklist_contents$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01IX6S9EY9IYV3RMFDEry1lzXu1HxKSlEo4",
+        "name": "Read Table from JSON",
+        "title": "Add Global Blacklist Contents to List",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Add Global Blacklist Contents to List",
+          "input_json": "$activity.definition_activity_01IX6S472QTVI25GTFEe7NJTilG1wdjyiuN.output.response_body$",
+          "jsonpath_query": "$[0][\"contents\"]",
+          "persist_output": true,
+          "populate_columns": false,
+          "skip_execution": false,
+          "table_columns": [
+            {
+              "column_name": "name",
+              "column_type": "string"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01IX6SBA9YMI80NGWct1RJiPYe0j5w70C95",
+        "name": "For Each",
+        "title": "Loop Through Global Blacklist Contents for Object Names",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Loop Through Global Blacklist Contents for Object Names",
+          "skip_execution": false,
+          "source_array": "$activity.definition_activity_01IX6S9EY9IYV3RMFDEry1lzXu1HxKSlEo4.output.read_table_from_json$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01IX6SDE1NUSY6pwWoU9LEvUrtAIneKT5tq",
+            "name": "Condition Block",
+            "title": "Condition Block",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Condition Block",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_01IX6SELC725D1hJA1pwuCXnJgQvVTdU7SY",
+                "name": "Condition Branch",
+                "title": "Condition Branch",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_01IX6SBA9YMI80NGWct1RJiPYe0j5w70C95.input.source_array[@].name$",
+                    "operator": "eq",
+                    "right_operand": "$workflow.definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm.output.variable_workflow_01IX6QS57AS6Q5ZnoX4GrtxW4oz4HNH5Iqg$"
+                  },
+                  "continue_on_failure": true,
+                  "display_name": "Condition Branch",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01IX6SFVANZCX6gwhX0oyfIO6sBt0Uao1Ll",
+                    "name": "Completed",
+                    "title": "Completed",
+                    "type": "logic.completed",
+                    "base_type": "activity",
+                    "properties": {
+                      "completion_type": "succeeded",
+                      "display_name": "Completed"
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01IX6SGQR7GJM6hM8qBX88JpTz36tlSMNz6",
+        "name": "Set Variables",
+        "title": "Build Global Blacklist Variable",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Build Global Blacklist Variable",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm.output.variable_workflow_01IX6QS57AMDY6ZYg4bPSvAxze9zi41h8Ky$",
+              "variable_value_new": "{\"@typeName\":\"LocalObject\",\"contents\":$workflow.definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm.output.variable_workflow_01IX6QS57AXNB5VnJv3xNxVS795EFyBSkls$,\"description\":\"Global Blacklist for Policies\",\"deviceType\":\"FTD\",\"objectType\":\"NETWORK_GROUP\"}"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01IX6SIBHHW4W4APmoB3AUnQiuXkqEIWZUn",
+        "name": "Replace String",
+        "title": "Add New Blacklisted Object to Global Blacklist Variable",
+        "type": "core.replacestring",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Add New Blacklisted Object to Global Blacklist Variable",
+          "input_string": "$workflow.definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm.output.variable_workflow_01IX6QS57AMDY6ZYg4bPSvAxze9zi41h8Ky$",
+          "replace_list": [
+            {
+              "replaced_string": "],\"description\"",
+              "replacement_string": ",{\"@type\":\"ObjectReferenceContent\",\"name\":\"$workflow.definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm.output.variable_workflow_01IX6QS57AS6Q5ZnoX4GrtxW4oz4HNH5Iqg$\",\"type\":\"NETWORK_OBJECT\",\"uid\":\"$workflow.definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm.output.variable_workflow_01IX6QS57AQGR1AP3PzDeWwL60KdjQNJolJ$\"}],\"description\""
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01IX6SJK1B47Q79528ez6GOi0oiXwphuEtH",
+        "name": "HTTP Request",
+        "title": "Update Global Blacklist in CDO",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "$activity.definition_activity_01IX6SIBHHW4W4APmoB3AUnQiuXkqEIWZUn.output.result_string$",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": ""
+            }
+          ],
+          "display_name": "Update Global Blacklist in CDO",
+          "method": "PUT",
+          "relative_url": "/aegis/rest/v1/services/targets/objects/$workflow.definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm.output.variable_workflow_01IX6QS57AOCL4xAXFXXTx3cINiZqTW5dhA$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01FWWFY10MX7S2QECl9QBBuiGbhKPTrCLOp"
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "triggers": {
+    "triggerschedule_01IX6QX6HKAE2063E3QwR22u3tgzDOThcpS": {
+      "workflow_id": "definition_workflow_01IX6QS8WWSMJ0wNzlD3dS2julsi3zbmRBm",
+      "name": "SWC to CDO Trigger",
+      "title": "",
+      "lowercase_name": "schedule.swc_to_cdo_trigger",
+      "type": "schedule",
+      "base_type": "trigger",
+      "ref_id": "schedule_01GO6BIRXYHWI0BX6YtUlIJpyBTnujhJWka",
+      "version": "1.0.0",
+      "disabled": false,
+      "unique_name": "triggerschedule_01IX6QX6HKAE2063E3QwR22u3tgzDOThcpS",
+      "object_type": "triggerschedule"
+    }
+  },
+  "schedules": {
+    "schedule_01GO6BIRXYHWI0BX6YtUlIJpyBTnujhJWka": {
+      "unique_name": "schedule_01GO6BIRXYHWI0BX6YtUlIJpyBTnujhJWka",
+      "name": "Daily SWC to CDO Run",
+      "type": "basic.schedule",
+      "base_type": "schedule",
+      "properties": {
+        "calendar": "calendar_recurring_1BMfMWvgiDhSjBQ7hTSyvz3NyVZ",
+        "timezone": "US/Eastern",
+        "starttime": "02:00",
+        "interval_hours": 0,
+        "interval_minutes": 0,
+        "number_of_times": 1,
+        "display_name": "Daily SWC to CDO Run",
+        "description": ""
+      },
+      "version": "1.0.0",
+      "object_type": "schedule"
+    }
+  },
+  "targets": {
+    "definition_target_01FWWFY10MX7S2QECl9QBBuiGbhKPTrCLOp": {
+      "unique_name": "definition_target_01FWWFY10MX7S2QECl9QBBuiGbhKPTrCLOp",
+      "name": "Cisco Defense Orchestrator",
+      "title": "Cisco Defense Orchestrator",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": false,
+        "display_name": "Cisco Defense Orchestrator",
+        "host": "www.defenseorchestrator.com",
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    },
+    "definition_target_01FWWHLNBPBNE5wiLppRw8C42XahgMtUBGa": {
+      "unique_name": "definition_target_01FWWHLNBPBNE5wiLppRw8C42XahgMtUBGa",
+      "name": "Stealthwatch Cloud",
+      "title": "Stealthwatch Cloud",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": false,
+        "display_name": "Stealthwatch Cloud",
+        "host": "cisco-edmcnich.obsrvbl.com",
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    }
+  },
+  "table_types": {
+    "tabletype_01FX1627YIMCW42Ogv9vYd598L28sj9doJX": {
+      "unique_name": "tabletype_01FX1627YIMCW42Ogv9vYd598L28sj9doJX",
+      "data_type": "datatype.tabletype",
+      "display_name": "Blacklisted_Table",
+      "columns": [
+        {
+          "name": "scanner_ip",
+          "title": "scanner_ip",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    },
+    "tabletype_01FZGY465G7NT1L6QdxgYydbytx51gSknKm": {
+      "unique_name": "tabletype_01FZGY465G7NT1L6QdxgYydbytx51gSknKm",
+      "data_type": "datatype.tabletype",
+      "display_name": "global_blacklist_table",
+      "columns": [
+        {
+          "name": "@type",
+          "title": "@type",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "title": "name",
+          "type": "string"
+        },
+        {
+          "name": "type",
+          "title": "type",
+          "type": "string"
+        },
+        {
+          "name": "uid",
+          "title": "uid",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}
